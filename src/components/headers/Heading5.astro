@@ -1,14 +1,22 @@
-<h4>
+<h5>
   <slot />
-</h4>
+</h5>
 
 <style lang="scss">
   @use "../../styles/vars" as v;
 
-  h4 {
+  h5 {
     font-family: v.$secondaryFont;
-    font-size: 2.8rem;
+    font-size: 1.8rem;
+    line-height: 1;
 
+    color: v.$primary;
     letter-spacing: 0.475rem;
+  }
+
+  @media screen and (width >= 768px) {
+    h5 {
+      font-size: 2rem;
+    }
   }
 </style>

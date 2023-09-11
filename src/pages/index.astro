@@ -1,7 +1,125 @@
 ---
+import { getImage } from "astro:assets";
+
 import Layout from '../layouts/Layout.astro';
+
+import Heading1 from "../components/headers/Heading1.astro";
+import Heading5 from "../components/headers/Heading5.astro";
+
+import mobileBackgroundImage from "../assets/home/background-home-mobile.jpg";
+import tabletBackgroundImage from "../assets/home/background-home-tablet.jpg";
+import desktopBackgroundImage from "../assets/home/background-home-desktop.jpg";
+
+const optimizedMobileBackgroundImage = await getImage({ src: mobileBackgroundImage, format: "webp", quality: "high"});
+const optimizedTabletBackgroundImage = await getImage({ src: tabletBackgroundImage, format: "webp", quality: "max"});
+const optimizedDesktopBackgroundImage = await getImage({ src: desktopBackgroundImage, format: "webp", quality: "high"});
+
+const mobileBackground = `url(${optimizedMobileBackgroundImage.src})`;
+const tabletBackground = `url(${optimizedTabletBackgroundImage.src})`;
+const desktopBackground = `url(${optimizedDesktopBackgroundImage.src})`;
 ---
 
 <Layout title="Space Tourism">
+  <main>
+    <Heading5>SO, YOU WANT TO TRAVEL TO</Heading5>
+    <Heading1>SPACE</Heading1>
 
+    <p>
+      Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!
+    </p>
+
+    <a href="./crew-pilot">
+      EXPLORE
+    </a>
+  </main>
 </Layout>
+
+<style 
+  lang="scss" 
+  define:vars={{
+    mobileBackground,
+    tabletBackground,
+    desktopBackground,
+  }}
+>
+  @use "../styles/vars" as v;
+
+  main {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 4rem;
+
+    padding: 1.5rem;
+    padding-top: 13.5rem;
+
+    background-image: var(--mobileBackground);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @media screen and (width >= 768px) {
+      padding-top: 22rem;
+
+      background-image: var(--tabletBackground);
+    }
+
+    p {
+      max-width: 44.4rem;
+
+      font-size: 1.8rem;
+
+      color: v.$primary;
+      text-align: center;
+      line-height: 2.5rem;
+
+      @media screen and (width >= 768px) {
+        line-height: 2.8rem;
+      }
+    }
+
+    a {
+      width: 15rem;
+      height: 15rem;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      font-family: v.$mainFont;
+      font-size: 2rem;
+      letter-spacing: 0.125rem;
+
+      color: v.$black;
+      background-color: v.$white;
+      text-decoration: none;
+
+      &:active {
+        box-shadow: 0 0 0 3rem rgba(255, 255, 255, 0.1);
+        transition: box-shadow 0.1s;
+      }
+
+      @media screen and (width >= 768px) {
+        width: 24.2rem;
+        height: 24.2rem;
+
+        margin-top: 13rem;
+
+        font-size: 3.2rem;
+
+        &:active {
+          box-shadow: 0 0 0 7rem rgba(255, 255, 255, 0.1);
+        }
+
+        /*&:hover {
+          box-shadow: 0 0 0 3rem rgba(255, 255, 255, 0.1);
+          transition: box-shadow 0.1s;
+        }*/
+      }
+    }
+  }
+</style>
