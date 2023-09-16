@@ -11,10 +11,22 @@ import MenuLogo from "../assets/shared/icon-hamburger.svg";
   <Image src={MenuLogo} alt="Menu Mobile Button" class="menuButton"/>
 
   <ul>
-    <li>HOME</li>
-    <li>DESTINATION</li>
-    <li>CREW</li>
-    <li>TECHNOLOGY</li>
+    <li>
+      <span>00</span>
+      HOME
+    </li>
+    <li>
+      <span>01</span>
+      DESTINATION
+    </li>
+    <li>
+      <span>02</span>
+      CREW
+    </li>
+    <li>
+      <span>03</span>
+      TECHNOLOGY
+    </li>
   </ul>
 </header>
 
@@ -23,10 +35,6 @@ import MenuLogo from "../assets/shared/icon-hamburger.svg";
 
   header {
     width: 100%;
-
-    position: fixed;
-    left: 0;
-    top: 0;
 
     display: flex;
     justify-content: space-between;
@@ -38,6 +46,11 @@ import MenuLogo from "../assets/shared/icon-hamburger.svg";
       padding-left: 3.5rem;
       padding-right: 0;
       padding-top: 0;
+    }
+
+    @media screen and (width >= 992px) {
+      padding-left: 4rem;
+      padding-top: 3rem;
     }
   }
 
@@ -67,6 +80,7 @@ import MenuLogo from "../assets/shared/icon-hamburger.svg";
     list-style: none;
 
     background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(4.5rem);
 
     @media screen and (width >= 768px) {
       display: flex;
@@ -78,10 +92,26 @@ import MenuLogo from "../assets/shared/icon-hamburger.svg";
       font-size: 1.4rem;
       letter-spacing: 0.236rem;
 
-      border-bottom: 0.2rem transparent solid;
+      border-bottom: 0.3rem transparent solid;
+
+      span {
+        display: none;
+
+        margin-right: 0.75rem;
+
+        font-weight: 700;
+
+        @media screen and (width >= 992px) {
+          display: inline-block;
+        }
+      }
+
+      @media screen and (width >= 768px) {
+        font-size: 1.6rem;
+      }
 
       &:hover {
-        border-bottom: 0.2rem v.$white solid;
+        border-bottom-color: v.$white;
       }
     }
   }
